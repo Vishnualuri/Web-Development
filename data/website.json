@@ -1,0 +1,73 @@
+[
+  {
+    "id": 1,
+    "name": "Vishnu Aluri",
+    "details": {
+      "full name": "Venkata Vishnuvardhan Aluri",
+      "Age": 22,
+      "country": "India",
+      "phone": 6173192434
+    },
+    "description": "Cool and curious quick learner. Does best in his interests. Loves cric, soccer and playing video games",
+    "email" : "vishnu.av3@gmail.com",
+    "rating": 4,
+    "image": "img/File_000.jpg",
+    "socialMedia":{
+        "gPlus" : "#",
+        "facebook" : "#",
+        "twitter" : "#",
+        "instagram" : "#",
+        "linkedIn" : "https://linkedin.com/in/venkata-vishnuvardhan-aluri",
+        "github" : "https://github.com/vishnualuri"
+    }
+  },
+  {
+    "id": 2,
+    "name": "Projects",
+    "projects": {
+      "Python": "ETL Tool",
+      "os": "Uix Shell Interpreter"
+    },
+    "description": "Projects can be fetched from server or use the below link",
+    "link1": "https://github.com/Vishnualuri/ETL-Python",
+    "link2": "https://github.com/Vishnualuri/UNIX-Shell-Interpreter"
+  },
+  {
+    "id": 3,
+    "name": "Travel",
+    "country": {
+      "India": "Hyderabad, Delhi, Bangalore etc",
+      "USA": "Boston, New york, Chicago etc"
+    },
+    "description": "Travel is fatal to prejudice, bigotry, and narrow mindedness., and many of our people need it sorely on these accounts.",
+    "image": {
+      "Chicago": "img/chicago.jpg",
+      "Newyork": "img/newyork.jpg",
+      "Washington": "img/wash.jpg"
+    }
+  },
+  {
+    "id": 4,
+    "Fulltime": {
+        "Deloitte" : {
+            "Location" : "UIS - Hyderabad, India",
+            "From" : "August 2016",
+            "To" : "August 2017",
+            "Role" : "Advisory Analyst",
+            "Responsibilities": "Computerized System Validation",
+            "Metrics": "<li>Performed computerized system validation using HP ALM (Hewlett Packard Application Lifecycle Management) and HPSC (Hewlett Packard Service Center).</li><li>Worked on deliverables like test scripts, URs, FRs, tracematrix and defect management process.</li><li>Developed dashboards that track the progress of projects and been a part of team that built an automation tool for validation using Python.</li>"
+        }
+    },
+    "Intern": {
+        "BSNL" : {
+            "Location" : "Bharat Sanchar Nigam Limited(BSNL) - Hyderabad, India",
+            "From" : "April 2015",
+            "To" : "June 2015",
+            "Role" : "Intern",
+            "Responsibilities": "Encrypted Video Steganography",
+            "Metrics":"<li>The technique utilizes steganography where data which is already encrypted using an encryption algorithm is encoded into video files.</li>"
+        }
+    },
+    "Experience": "One Year"
+  }
+]

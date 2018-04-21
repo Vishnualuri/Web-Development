@@ -1,0 +1,331 @@
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My WebSite</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"> 
+    <link rel="stylesheet" href="./css/style.css">
+  </head>
+
+  <body>
+  	<div class="profile">
+	    <div class="profile-pic">
+	      <img src="https://image.flaticon.com/icons/svg/236/236832.svg" alt="Profile_pic" class="img-circle">		
+    	</div>
+    	<div class="container">
+      		<div class="nav-item">
+        		<h3 class="nav-link site-heading">Vishnu's Blog</h3>
+      		</div>
+    	</div>  		
+  	</div>
+    <div class="container navigation-bar">
+      <div class="nav-item about">
+        <h4 class="nav-link"> <a class="link" href="#" id="about_link">About Me</a></h4>
+      </div>
+      <div class="nav-item projects">
+      	<h4 class="nav-link"> <a class="link" href="#" id="projects_link">Projects</a></h4>      
+      </div>
+      <div class="nav-item hobbies">
+      	<h4 class="nav-link"> <a class="link" href="#" id="hobbies_link">Hobbies</a></h4>
+      </div>
+      <div class="nav-item workExperience">
+      	<h4 class="nav-link"> <a class="link" href="#" id="experience_link">Experience</a></h4>        
+      </div>
+    </div>
+	<section id="aboutme" style="display: none;">
+		<div class="container boxImage">
+			<div class="image">
+			</div>
+			<div class="nav-item details">
+			</div>
+		</div>
+	</section>
+	<section id="projects" style="display: none;">
+		<div class="container">
+			<div class="nav-item">
+				<h2 class="section-title-text">Projects</h2>
+				<hr/>
+			</div>
+		</div>
+		<div class="container myprojects">
+		</div>
+	</section>
+	<section id="travel" style="display: none;">
+		<div class="container">
+			<div class="nav-item">
+				<div>
+					<h2 class="section-title-text">Travel</h2>
+					<hr/>
+				</div>
+				<div>
+					<h3 class="description"></h3>
+				</div>
+			</div>
+		</div>
+		<div class="container" id="travel_pics">
+		</div>
+	</section>
+	<section id="experience" style="display: none;">
+		<div class="container">
+			<div class="nav-item">
+				<h2 class="section-title-text">Experience</h2>
+				<hr/>
+			</div>
+		</div>
+		<div class="container" id="myexperiences">
+		</div>
+	</section>
+	
+	<!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<!-- Font Awesome -->
+	<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+    
+    <script type="text/javascript">
+    	$(document).ready(function(){
+	    	$('#about_link')
+    			.click(function() {
+    				$('#projects').slideUp();
+    				$('#travel').slideUp();
+    				$('#experience').slideUp();
+
+    				$('#aboutme').slideToggle();
+    				$('#about_link').toggleClass('active');					
+    			});
+			$('#projects_link')
+    			.click(function() {
+        			$('#aboutme').slideUp();
+    				$('#travel').slideUp();
+    				$('#experience').slideUp();
+				
+    				$('#projects').slideToggle();
+    				$('#projects_link').toggleClass('active');					
+    			});
+			$('#hobbies_link')
+    			.click(function() {
+    				$('#aboutme').slideUp();
+    				$('#projects').slideUp();
+    				$('#experience').slideUp();
+
+    				$('#travel').slideToggle();
+    				$('#hobbies_link').toggleClass('active');					
+    			});
+
+			$('#experience_link')
+    			.click(function() {
+    				$('#aboutme').slideUp();
+    				$('#projects').slideUp();
+    				$('#travel').slideUp();
+    				
+    				$('#experience').slideToggle();
+    				$('#experience_link').toggleClass('active');					
+    			});
+
+	    	loadJSON(function(response) {
+	    		var jsonData = JSON.parse(response);
+
+	    		createMainSection(jsonData[0]);
+	    		jsonData.forEach(loadSectionData);
+	    	});
+	    	
+	    	function loadJSON(callback) {
+		    	var xmlHttp = new XMLHttpRequest();
+		    	xmlHttp.overrideMimeType("application/json");
+	 	   		xmlHttp.open("GET", "./data/website.json", true)	    	
+		    	xmlHttp.onreadystatechange = function() {
+		    		if (this.readyState == 4 && this.status == 200) {
+		    			callback(this.responseText);
+		    		}		    		
+		    	}
+	    		xmlHttp.send();
+	    	}
+
+	    	function createMainSection(element) {
+	    			// Main Section
+					$('<section id="main"><div class="container"><div class="nav-item boxContent"><h2 class="section-title-text"></h2></div></div></section>').insertAfter('#experience');
+
+					// Name
+	    			$("#main .section-title-text").html(element.name);
+	    			// Description
+	    			var desc = 	$("<p></p>").text(element.description);
+	    			$("<div></div>")
+	    				.addClass("description")
+	    				.append(desc)
+	    				.appendTo('#main .boxContent');
+
+	    			// Email Button
+	    			var emailBtn = $("<a />", {
+	    				 				id : "emailLink",
+	    				 				class : "button link",
+	    								href : "mailto:" + element.email,
+	    								text : "Email Me"
+	    							});
+					$("<div></div>")
+	    				.append(emailBtn)
+	    				.appendTo('#main .boxContent');
+
+	    			// Social Media
+					var googlePlus = $('<a class="link social-media-link"> </a>')
+								.attr('href', element["socialMedia"]["gPlus"])
+								.append($('<i class="fab fa-google-plus-g fa-lg"></i>'));
+
+					var facebook = $('<a class="link social-media-link"> </a>')
+								.attr('href', element["socialMedia"]["facebook"])
+								.append($('<i class="fab fa-facebook-f fa-lg"></i>'));
+
+					var twitter = $('<a class="link social-media-link"> </a>')
+								.attr('href', element["socialMedia"]["twitter"])
+								.append($('<i class="fab fa-twitter fa-lg"></i>'));
+
+					var instagram = $('<a class="link social-media-link"> </a>')
+								.attr('href', element["socialMedia"]["instagram"])
+								.append($('<i class="fab fa-instagram fa-lg"></i>'));
+
+					var linkedin = $('<a class="link social-media-link"> </a>')
+								.attr('href', element["socialMedia"]["linkedIn"])
+								.append($('<i class="fab fa-linkedin-in fa-lg"></i>'));
+
+					var github = $('<a class="link social-media-link"> </a>')
+								.attr('href', element["socialMedia"]["github"])
+								.append($('<i class="fab fa-github fa-lg"></i>'));
+
+					$('<div></div>', {
+								class : "social-media"
+								}
+							).append([googlePlus, facebook, twitter, instagram, linkedin, github])
+							.appendTo("#main .boxContent");	    		
+	    	}
+
+	    	function loadSectionData(element, index, data) {
+	    		if(element.id == 1){ // About
+
+	    			// About Me Image
+					var styles = {
+						"background" : 'linear-gradient(rgba(255,0,0, 0.25),rgba(255,0,0, 0.25)), url("' + "./"+ element.image + '")',
+						"height" : 500
+					};
+					$(".image")
+						.css(styles)
+	    				//.css("background", "url(./img/File_000.jpg) no-repeat")
+	    				//.width('300px').height('250px')
+					$(".name-heading").html(element.name);
+				
+	    			var fullName = $('<li></li>').text(element["details"]["full name"]);
+					var age = $('<li></li>').text(element["details"]["Age"]);
+					var country = $(' <li></li>').text(element["details"]["country"]);
+					var phone = $(' <li></li>').text(element["details"]["phone"]);	    			
+	    			$("<ul></ul>")
+	    				.append([fullName, age, country, phone])
+	    				.appendTo(".details");
+					
+	    			$("<span><i class='fa fa-user fa-lg'></i></span>")	    				
+	    				.prependTo(".details ul li:first-child");
+
+	    			$("<span style = 'padding:11px;'><i class='fa fa-male fa-2x'></span>")
+	    				.prependTo(".details ul li:nth-child(2)");
+	    			
+	    			$("<span><i class='fa fa-map-marker fa-lg'></span>")
+	    				.prependTo(".details ul li:nth-child(3)");
+	    			
+	    			$("<span><i class='fa fa-phone fa-lg' style = 'transform: scaleX(-1);'></span>")
+	    				.prependTo(".details ul li:last-child");
+	    			
+	    		}
+
+	    		if(element.id == 2){
+	    			var child = 1;
+	    			for(project in element["projects"]){
+						$('<div class="polaroid"><div class="project-details"></div><div class="project-source"></div></div>')
+							.appendTo(".myprojects");
+		    			var projectName = $('<h3></h3>');
+		    			var projectPlatform = $('<h5></h5>');
+		    			
+		    			var link;
+		    			if(project=="Python"){
+		    				link = element["link1"];	
+		    			} 
+		    			else{
+		    				link = element["link2"];
+		    			}
+		    			$('<a class="link"></a>')
+		    				.attr({
+		    					href : link,
+		    					target : "_blank"
+		    				})
+		    				.text("View")
+		    				.appendTo(".myprojects .polaroid:nth-child(" + child + ") .project-source");
+
+						projectName.text(element["projects"][project]).appendTo(".myprojects .polaroid:nth-child(" + child + ") .project-details");
+						projectPlatform.text(project).appendTo(".myprojects .polaroid:nth-child(" + child + ") .project-details");
+
+						child++;
+	    			}
+	    		}
+
+	    		if(element.id == 3){
+	    			var child = 1;
+	    			for(photoLink in element["image"]){
+						$('<div class="polaroid travel-polaroid"></div>')
+							.appendTo("#travel_pics");
+		    			var image = $('<img></img>',{
+		    				src : "./" + element["image"][photoLink],
+		    				alt : photoLink,
+		    				id : photoLink,
+		    				height : 300
+		    			});
+
+						image.appendTo("#travel_pics .travel-polaroid:nth-child(" + child + ")");
+
+		    			$('<div class="project-source"></div>')
+			    			.text(photoLink)
+			    			.insertAfter('#travel_pics #' + photoLink);
+
+						child++;
+	    			}
+	    		}
+	    		if(element.id == 4){
+	    			for(company in element["Fulltime"]){
+	    				addExperienceDetails(element, "Fulltime" , company);
+	    			}
+	    			for(company in element["Intern"]){
+	    				addExperienceDetails(element, "Intern", company);
+	    			}
+	    		}
+	    	}
+
+	    	function addExperienceDetails(element, type, company) {
+   				$('<div class="container myexperience" id="'+ company +'"><div class="nav-item experience-role"></div><div class="nav-item experience-details"></div></div>')
+   					.appendTo('#myexperiences');
+
+    			var myrole = $('<h2></h2>')
+    				.text(element[type][company]["Role"])
+
+    			var dates = $('<p> </p>')
+    							.text(element[type][company]["From"] + " - " + element[type][company]["To"])
+    							.prepend($(' <span> <i class="far fa-calendar-alt"></i> <span> '));
+
+    			myrole.appendTo('#' + company + ' .experience-role');
+    			dates.appendTo('#' + company + ' .experience-role');
+		    			
+		    	var companyName = $('<h2></h2>').text(company);
+		    	var location = $('<h5></h5>')
+		    						.text(element[type][company]["Location"])
+		    						.prepend($(' <span> <i class="fa fa-map-marker"></i> <span> '));
+    			var projectName = $('<h3> </h3>')
+    								.text(element[type][company]["Responsibilities"]);
+    								//.prepend($(' <span> <i class="fas fa-circle"></i> <span> '));
+
+    			var metricsList = $('<ul></ul>').append(element[type][company]["Metrics"]);
+				companyName.appendTo('#' + company + ' .experience-details');
+    			location.appendTo('#' + company + ' .experience-details');
+				projectName.appendTo('#' + company + ' .experience-details');
+    			metricsList.appendTo('#' + company + ' .experience-details');
+	    	}
+	    });
+    </script>    
+  </body>
+
+</html>
