@@ -13,10 +13,10 @@
     "rating": 4,
     "image": "img/File_000.jpg",
     "socialMedia":{
-        "gPlus" : "#",
-        "facebook" : "#",
-        "twitter" : "#",
-        "instagram" : "#",
+        "gPlus" : "http://plus.google.com/+vishnuvardhanAluri",
+        "facebook" : "https://www.facebook.com/vishnu.vardhan.98031506",
+        "twitter" : "https://twitter.com/vishnudone",
+        "instagram" : "https://www.instagram.com/vishnu_v3/",
         "linkedIn" : "https://linkedin.com/in/venkata-vishnuvardhan-aluri",
         "github" : "https://github.com/vishnualuri"
     }
