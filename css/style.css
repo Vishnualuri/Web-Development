@@ -7,7 +7,8 @@ body{
   line-height: 1;
   font-size: 15px;
   margin: 0px;
-  background-color: #f9f9f9;  
+  color: #212121;
+  background-color: #f5f5f5;  
 }
 
 .profile{
@@ -16,6 +17,8 @@ body{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #008979;
+  padding: 15px;
   /*
   background-image: url("../img/profile_background.jpg");
   background-repeat: no-repeat;
@@ -48,9 +51,10 @@ body{
 }
 
 .navigation-bar{   
-  background-color : #fff;
-  margin-top: 15px;
+  background-color : #00aa8d;
+  /*
   border-bottom: 0.5px solid #e8e8e8;
+  */  
   z-index: 90;
 }
 
@@ -71,39 +75,23 @@ body{
 
 .link{
   text-decoration: none;
-  color: inherit;
+  color: #fff;
 }
 
 .link:hover{
-  color: #333;
+  color: #212121;
 }
 
 .site-heading {
   font-size: 50px;
   margin-top: 10px;
-  color: #000 !important;
-}
-
-.about {
-  background-color: #c0dbe2;
-}
-
-.projects {
-  background-color: #cdf1c3;
-}
-
-.hobbies {
-  background-color: #b391cccc;
-}
-
-.workExperience {
-  background-color: #eb6b6ab0;
+  color: #fff !important;
 }
 
 #main{
   color: #fff !important;
   padding: 60px 0px 40px 0px;
-  background-color: #526071;
+  background-color: #37474F;
 }
 
 .section-title{
@@ -129,7 +117,7 @@ body{
 .social-media-link{
   flex-direction: row;
   padding: 0px 5px;
-  color: #7ec9ac;
+  color: #00aa8d;
 }
 .social-media-link:hover{
   color: #fff;
@@ -143,7 +131,7 @@ body{
 .boxImage{
   justify-content: flex-start;
   margin-left: 0px;
-  background-color: #97aabd;
+  background-color: #607D8B;
 }
 .image{
   flex-basis: 45%;
@@ -151,7 +139,6 @@ body{
   margin-right: 30px;
   align-self: center;
   background-size: cover !important;
-
 }
 
 /*
@@ -185,7 +172,7 @@ body{
   /*
   background-color: #7da7d9;
   */
-  background-color: #3aafa9;
+  background-color: #00aa8d;
   border-radius: 30px;
   color: #fff;
   display: inline-block;
@@ -202,7 +189,7 @@ body{
 
 .button:hover{
   color: #fff;
-  background-color: #aaa;
+  background-color: #00bf9a;
 }
 
 .details ul{
@@ -220,6 +207,7 @@ body{
   letter-spacing: .5px;  
 }
 .details ul li span{
+  color: #212121;
   padding: 5px;
   margin: 5px;
 }
@@ -236,7 +224,7 @@ body{
 
 .project-source{
   color: #fff;
-  background-color: #3aafa9;
+  background-color: #008979;
   padding: 25px;
   text-transform: uppercase;
   text-align: center;
@@ -253,9 +241,18 @@ body{
   flex-basis: 25%;
 }
 
+#experience{
+  padding: 10px;
+}
 .myexperience{
   justify-content: space-around;
   width: 90%;
+  margin: 5px;  
+  padding: 20px;  
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: #fff;
+  z-index: 90;
 }
 
 .experience-role{
@@ -264,6 +261,11 @@ body{
   padding: 2px;
   margin: 0px 10px;
 }
+
+.experience-role p{
+  color: #757575;
+}
+
 .experience-details{
   flex-grow: 1;
   width: 60%;
@@ -274,6 +276,7 @@ body{
 .experience-details ul li{
   margin: 5px;
   padding: 5px;
+  line-height: 1.5;
 }
 
 img {

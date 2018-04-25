@@ -7,6 +7,7 @@
     <title>My WebSite</title>
 
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"> 
+
     <link rel="stylesheet" href="./css/style.css">
   </head>
 
@@ -86,7 +87,9 @@
     
     <script type="text/javascript">
     	$(document).ready(function(){
-	    	$('#about_link')
+
+    		var success = false;
+			$('#about_link')
     			.click(function() {
     				$('#projects').slideUp();
     				$('#travel').slideUp();
@@ -129,18 +132,40 @@
 
 	    		createMainSection(jsonData[0]);
 	    		jsonData.forEach(loadSectionData);
+
 	    	});
 	    	
 	    	function loadJSON(callback) {
 		    	var xmlHttp = new XMLHttpRequest();
 		    	xmlHttp.overrideMimeType("application/json");
-	 	   		xmlHttp.open("GET", "./data/website.json", true)	    	
-		    	xmlHttp.onreadystatechange = function() {
+	 	   		xmlHttp.open("GET", "./data/website.json", true)	 	   		
+	 	   		xmlHttp.onreadystatechange = function() {
 		    		if (this.readyState == 4 && this.status == 200) {
+		    			success = true;
 		    			callback(this.responseText);
-		    		}		    		
-		    	}
+		    		}
+		    	};
+
+		    	xmlHttp.onerror = function() {
+		    		displayErrorPage();
+		    	};
+
 	    		xmlHttp.send();
+	    	}
+
+	    	function displayErrorPage() {
+	    		
+	    		$('<section id="errorPage"><div class="container"></div></section>').appendTo('body');
+				var styles = {
+					"background" : 'url("./img/404Error.jpg")',
+					"background-position" : "center center",
+					"background-repeat" : "no-repeat",
+					"background-size" : "contain",
+					"height" : 500,
+					"width" : "100%"
+				};
+				$("#errorPage .container")
+					.css(styles);
 	    	}
 
 	    	function createMainSection(element) {
@@ -215,8 +240,8 @@
 				
 	    			var fullName = $('<li></li>').text(element["details"]["full name"]);
 					var age = $('<li></li>').text(element["details"]["Age"]);
-					var country = $(' <li></li>').text(element["details"]["country"]);
-					var phone = $(' <li></li>').text(element["details"]["phone"]);	    			
+					var country = $('<li></li>').text(element["details"]["country"]);
+					var phone = $('<li></li>').text(element["details"]["phone"]);	    			
 	    			$("<ul></ul>")
 	    				.append([fullName, age, country, phone])
 	    				.appendTo(".details");
@@ -324,8 +349,9 @@
 				projectName.appendTo('#' + company + ' .experience-details');
     			metricsList.appendTo('#' + company + ' .experience-details');
 	    	}
+
 	    });
-    </script>    
+    </script>
   </body>
 
 </html>
